@@ -10,7 +10,6 @@ export const LoginScreen = ({navigation}) => {
         <Button title="Go to Dashboard" 
         onPress={() => navigation.navigate('DashboardScreen')} />
         <LoginModal />
-
     </View>
   )
 }
