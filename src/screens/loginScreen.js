@@ -1,11 +1,26 @@
-import React, {useState} from 'react';
-import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, Image, TextInput, TouchableOpacity, DeviceEventEmitter} from 'react-native';
+import SpinnerModule from '../androidModule/spinnerModule';
 import {LoginModal} from '../components/loginModal';
 import {loginStyles} from '../theme/loginTheme';
 
 export const LoginScreen = ({navigation}) => {
-
   const [modal, setModal] = useState(false);
+
+  const onSelected = (event) => {
+    console.log(event.nativeEvent);
+    
+  };
+
+  useEffect(() => {
+
+    DeviceEventEmitter.addListener('topChange', (e) => {
+      console.log(e)
+      // handle event and you will get a value in event object, you can log it here
+    });
+
+
+  },[modal])
   return (
     <View style={loginStyles.loginContainer}>
       <View style={loginStyles.imageContainer}>
@@ -31,24 +46,22 @@ export const LoginScreen = ({navigation}) => {
         </View>
       </View>
       <View style={loginStyles.numberCodeInputContainer}>
-        <View>
-          <TextInput style={loginStyles.codeNumberInput} />
-        </View >
-        <View >
-          <TextInput 
-          style={loginStyles.numberInput}
-          keyboardType="numeric"
+          <SpinnerModule
+          style={loginStyles.spinner}
+          dropDownWidth={200}
+          onPress={onSelected} 
+          //probar opress
           />
+        <View>
+          <TextInput style={loginStyles.numberInput} keyboardType="numeric" />
         </View>
       </View>
       <View style={loginStyles.sendCodeContainer}>
-        <TouchableOpacity
-        onPress={() => setModal(true)}
-        >
-          <Text style={loginStyles.sendCodeText}>Send Code</Text>  
+        <TouchableOpacity onPress={() => setModal(true)}>
+          <Text style={loginStyles.sendCodeText}>Send Code</Text>
         </TouchableOpacity>
       </View>
-      <View style={loginStyles.blankView}/>
+      <View style={loginStyles.blankView} />
       <LoginModal isVisible={modal} />
     </View>
   );

@@ -30,7 +30,7 @@ export const loginStyles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   codeView: {
-    paddingRight: '24%',
+    paddingRight: '26%',
   },
   codeText: {
     fontSize: 15,
@@ -68,9 +68,12 @@ export const loginStyles = StyleSheet.create({
     borderColor: '#D3D3D3',
     borderWidth: 1,
     borderRadius: 5,
-    marginLeft: 30,
     paddingVertical: 5,
     backgroundColor: 'white',
+  },
+  spinner: {
+    width: 100,
+    height: 50,
   },
   blankView: {
     flex: 6,
