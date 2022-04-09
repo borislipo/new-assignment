@@ -12,7 +12,7 @@ export const DashboardScreen = () => {
           source={{
             uri: 'https://res.cloudinary.com/drcoopxns/image/upload/v1649446502/safeAndSoundLogo_owfs6w.png',
           }}
-          style={{ width: 200, height: 175}}
+          style={{ width: 200, height: 180}}
         />
       </View>
       </View>

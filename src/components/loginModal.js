@@ -22,8 +22,7 @@ export const LoginModal = ({isVisible}) => {
 
   return (
     <View>
-      <Button title="Show Login Modal" onPress={() => setModalVisible(true)} />
-      <Modal animationType="slide" transparent={true} visible={modalVisible}>
+      <Modal animationType="slide" transparent={true} visible={isVisible}>
         <View style={styles.modal}>
           <View style={styles.modalBlank} />
           <View style={styles.modalContent}>

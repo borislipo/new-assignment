@@ -10,8 +10,8 @@ export const StackNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        <Stack.Screen name="DashboardScreen" component={DashboardScreen} />
+        <Stack.Screen name="LoginScreen" options={{ headerShown: false }} component={LoginScreen} />
+        <Stack.Screen name="DashboardScreen" options={{ headerShown: false }} component={DashboardScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
