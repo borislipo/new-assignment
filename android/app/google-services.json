@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "247410551994",
+    "project_id": "sas-app-50e67",
+    "storage_bucket": "sas-app-50e67.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247410551994:android:97bdec7a63ab74ecff2683",
+        "android_client_info": {
+          "package_name": "com.homeassignmentsas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247410551994-onltagr3p1r7694ovqeq09j0v4kg7phl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.homeassignmentsas",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "247410551994-rocf3r2jc8685osv0863mvgeoj2c2q0j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADp5SSdXoSdKfkQoQMDnmuYxtUTy4lU2A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247410551994-rocf3r2jc8685osv0863mvgeoj2c2q0j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

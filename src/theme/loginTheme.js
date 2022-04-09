@@ -9,6 +9,7 @@ export const loginStyles = StyleSheet.create({
   },
   imageContainer: {
     flex: 4,
+    marginTop: 15,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -30,7 +31,7 @@ export const loginStyles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   codeView: {
-    paddingRight: '26%',
+    paddingRight: '27%',
   },
   codeText: {
     fontSize: 15,
@@ -38,7 +39,7 @@ export const loginStyles = StyleSheet.create({
     color: '#6C7A8C',
   },
   numberView: {
-    paddingLeft: '20%',
+    paddingLeft: '18%',
   },
   numberCodeInputContainer: {
     flex: 2,
@@ -72,7 +73,7 @@ export const loginStyles = StyleSheet.create({
     backgroundColor: 'white',
   },
   spinner: {
-    width: 100,
+    width: 120,
     height: 50,
   },
   blankView: {

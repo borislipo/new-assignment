@@ -10,15 +10,30 @@ import {
 
 const CELL_COUNT = 6;
 
-export const LoginModal = ({isVisible}) => {
-  const [modalVisible, setModalVisible] = useState(null);
-
+export const LoginModal = ({isVisible, confirm, navigation}) => {
   const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
+
+  console.log(value);
+
+  const verifyCode = async () => {
+    if (value.length === 6) {
+      try {
+        const result = await confirm.confirm(value);
+        if (result) {
+          navigation.navigate('DashboardScreen');
+        }
+      } catch (e) {
+        alert(e);
+      }
+    }else{
+      alert('Please enter a valid code');
+    }
+  };
 
   return (
     <View>
@@ -56,14 +71,13 @@ export const LoginModal = ({isVisible}) => {
               />
             </View>
             <View style={styles.notMyNumberContainer}>
-              <TouchableOpacity
-              onPress={() => setModalVisible(false)}
-              >
-                <Text style={styles.notMyNumbertext}>{"< Not my number"}</Text>
+              <TouchableOpacity>
+                <Text style={styles.notMyNumbertext}>{'< Not my number'}</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.modalButtonContainer}>
               <TouchableOpacity
+                onPress={() => verifyCode()}
                 style={styles.modalButton}>
                 <Text style={styles.modalButtonText}>Login</Text>
               </TouchableOpacity>

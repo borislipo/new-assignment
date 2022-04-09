@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">homeAssignmentSAS</string>
     <string-array name="code_zones">
-        <item>052</item>
-        <item>054</item>
-        <item>050</item>
+        <item>+972</item>
+        <item>+1</item>
+        <item>+54</item>
     </string-array>
 </resources>
