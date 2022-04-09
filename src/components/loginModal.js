@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Modal, TouchableOpacity, Button} from 'react-native';
+import {View, Text, Modal, TouchableOpacity} from 'react-native';
 import {styles} from '../theme/appTheme';
 import {
   CodeField,
@@ -9,7 +9,7 @@ import {
 } from 'react-native-confirmation-code-field';
 
 
-export const LoginModal = ({isVisible, confirm, navigation, setModal}) => {
+export const LoginModal = ({isVisible, confirm, navigation, setModal, setConfirm, phoneNumber}) => {
   const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -34,6 +34,11 @@ export const LoginModal = ({isVisible, confirm, navigation, setModal}) => {
     }
   };
 
+  const goBack = () => {
+    setConfirm(null);
+    setModal(false);
+  };
+
   return (
     <View>
       <Modal animationType="slide" transparent={true} visible={isVisible}>
@@ -42,12 +47,11 @@ export const LoginModal = ({isVisible, confirm, navigation, setModal}) => {
           <View style={styles.modalContent}>
             <View accessible={true} style={styles.modalTextContainer}>
               <Text style={styles.modalText}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry.{' '}
+                {`אנו שולחים לך את הקוד שלך למספר  ${phoneNumber + " "}כדי שתוכל להיכנס`}
               </Text>
             </View>
             <View accessible={true} style={styles.modalText}>
-              <Text style={styles.modalText}>Security code</Text>
+              <Text style={styles.modalText}>קוד אבטחה</Text>
             </View>
             <View accessible={true} 
             accessibilityLabel="Enter Code"
@@ -77,9 +81,9 @@ export const LoginModal = ({isVisible, confirm, navigation, setModal}) => {
               accessible={true} 
               accessibilityLabel="Back to login"
               accessibilityHint="Go back to login page"
-              onPress={() => setModal(false)}
+              onPress={goBack}
               >
-                <Text style={styles.notMyNumbertext}>{'< Not my number'}</Text>
+                <Text style={styles.notMyNumbertext}>{'< זה לא המספר שלי'}</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.modalButtonContainer}>
@@ -89,7 +93,7 @@ export const LoginModal = ({isVisible, confirm, navigation, setModal}) => {
               accessibilityHint="Checks the code and sends you to the dashboard"
                 onPress={() => verifyCode()}
                 style={styles.modalButton}>
-                <Text style={styles.modalButtonText}>Login</Text>
+                <Text style={styles.modalButtonText}>להכנס</Text>
               </TouchableOpacity>
             </View>
           </View>

@@ -21,6 +21,7 @@ export const loginStyles = StyleSheet.create({
     alignItems: 'center',
   },
   loginText: {
+    textAlign: "center",
     fontSize: 15,
     fontWeight: 'bold',
     color: '#6C7A8C',

@@ -1,11 +1,10 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
+import React, {useState, useRef} from 'react';
 import {
   View,
   Text,
   Image,
   TextInput,
   TouchableOpacity,
-  DeviceEventEmitter,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import SpinnerModule from '../androidModule/spinnerModule';
@@ -23,11 +22,10 @@ export const LoginScreen = ({navigation}) => {
 
   const getOTP = async () => {
     if (validatePhoneNumber(phoneNumInput)) {
-      setModal(true);
       try {
         const confirmation = await auth().signInWithPhoneNumber(codeNumInput+phoneNumInput);
         setConfirm(confirmation);
-        setPhoneNumInput('');
+        setModal(true);
       } catch (e) {
         console.log(e);
       }
@@ -54,16 +52,15 @@ export const LoginScreen = ({navigation}) => {
       </View>
       <View accessible={true} style={loginStyles.textContainer}>
         <Text style={loginStyles.loginText}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry.{' '}
+        הזן את מספר הטלפון שלך כדי לשלוח לך את קוד הכניסה.{' '}
         </Text>
       </View>
       <View style={loginStyles.numberCodeContainer}>
         <View accessible={true} style={loginStyles.codeView}>
-          <Text style={loginStyles.codeText}>Code</Text>
+          <Text style={loginStyles.codeText}>מיקוד</Text>
         </View>
         <View style={loginStyles.numberView}>
-          <Text accessible={true} style={loginStyles.codeText}>Number</Text>
+          <Text accessible={true} style={loginStyles.codeText}>מספר</Text>
         </View>
       </View>
       <View style={loginStyles.numberCodeInputContainer}>
@@ -90,14 +87,18 @@ export const LoginScreen = ({navigation}) => {
         accessible={true}
         accessibilityLabel="Send Code"
         accessibilityHint="Opens the login modal"
-        onPress={() => setModal(true)}>
-          <Text onPress={() => getOTP()} style={loginStyles.sendCodeText}>
-            Send Code
+        onPress={() => getOTP()} >
+          <Text style={loginStyles.sendCodeText}>
+          שלח לי את הקוד
           </Text>
         </TouchableOpacity>
       </View>
       <View style={loginStyles.blankView} />
-      <LoginModal navigation={navigation} isVisible={modal} confirm={confirm} setModal={setModal} />
+      <LoginModal navigation={navigation} 
+      isVisible={modal} confirm={confirm} 
+      setConfirm={setConfirm} 
+      setModal={setModal}
+      phoneNumber={codeNumInput + phoneNumInput} />
     </View>
   );
 };
