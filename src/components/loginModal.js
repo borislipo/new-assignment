@@ -8,20 +8,19 @@ import {
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
 
-const CELL_COUNT = 6;
 
-export const LoginModal = ({isVisible, confirm, navigation}) => {
+export const LoginModal = ({isVisible, confirm, navigation, setModal}) => {
   const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
-
-  console.log(value);
+  
+  const CELL_COUNT = 6;
 
   const verifyCode = async () => {
-    if (value.length === 6) {
+    if (value.length === CELL_COUNT) {
       try {
         const result = await confirm.confirm(value);
         if (result) {
@@ -41,16 +40,19 @@ export const LoginModal = ({isVisible, confirm, navigation}) => {
         <View style={styles.modal}>
           <View style={styles.modalBlank} />
           <View style={styles.modalContent}>
-            <View style={styles.modalTextContainer}>
+            <View accessible={true} style={styles.modalTextContainer}>
               <Text style={styles.modalText}>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry.{' '}
               </Text>
             </View>
-            <View style={styles.modalText}>
+            <View accessible={true} style={styles.modalText}>
               <Text style={styles.modalText}>Security code</Text>
             </View>
-            <View style={styles.codefieldContainer}>
+            <View accessible={true} 
+            accessibilityLabel="Enter Code"
+            accessibilityHint="Receives the code sent to your phone"
+            style={styles.codefieldContainer}>
               <CodeField
                 ref={ref}
                 {...props}
@@ -71,12 +73,20 @@ export const LoginModal = ({isVisible, confirm, navigation}) => {
               />
             </View>
             <View style={styles.notMyNumberContainer}>
-              <TouchableOpacity>
+              <TouchableOpacity
+              accessible={true} 
+              accessibilityLabel="Back to login"
+              accessibilityHint="Go back to login page"
+              onPress={() => setModal(false)}
+              >
                 <Text style={styles.notMyNumbertext}>{'< Not my number'}</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.modalButtonContainer}>
               <TouchableOpacity
+              accessible={true} 
+              accessibilityLabel="Send Code"
+              accessibilityHint="Checks the code and sends you to the dashboard"
                 onPress={() => verifyCode()}
                 style={styles.modalButton}>
                 <Text style={styles.modalButtonText}>Login</Text>
