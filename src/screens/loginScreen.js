@@ -1,16 +1,10 @@
 import React, {useState, useRef} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import SpinnerModule from '../androidModule/spinnerModule';
 import {LoginModal} from '../components/loginModal';
 import {loginStyles} from '../theme/loginTheme';
-import { validatePhoneNumber } from '../helpers/helpers';
+import {validatePhoneNumber} from '../helpers/helpers';
 
 export const LoginScreen = ({navigation}) => {
   const [modal, setModal] = useState(false);
@@ -23,7 +17,9 @@ export const LoginScreen = ({navigation}) => {
   const getOTP = async () => {
     if (validatePhoneNumber(phoneNumInput)) {
       try {
-        const confirmation = await auth().signInWithPhoneNumber(codeNumInput+phoneNumInput);
+        const confirmation = await auth().signInWithPhoneNumber(
+          codeNumInput + phoneNumInput,
+        );
         setConfirm(confirmation);
         setModal(true);
       } catch (e) {
@@ -36,9 +32,8 @@ export const LoginScreen = ({navigation}) => {
 
   const onSelected = event => {
     codeRef.current = event.nativeEvent.data;
-     setCodeNumInput(codeRef.current);
+    setCodeNumInput(codeRef.current);
   };
-
 
   return (
     <View style={loginStyles.loginContainer}>
@@ -52,7 +47,7 @@ export const LoginScreen = ({navigation}) => {
       </View>
       <View accessible={true} style={loginStyles.textContainer}>
         <Text style={loginStyles.loginText}>
-        הזן את מספר הטלפון שלך כדי לשלוח לך את קוד הכניסה.{' '}
+          הזן את מספר הטלפון שלך כדי לשלוח לך את קוד הכניסה.
         </Text>
       </View>
       <View style={loginStyles.numberCodeContainer}>
@@ -60,7 +55,9 @@ export const LoginScreen = ({navigation}) => {
           <Text style={loginStyles.codeText}>מיקוד</Text>
         </View>
         <View style={loginStyles.numberView}>
-          <Text accessible={true} style={loginStyles.codeText}>מספר</Text>
+          <Text accessible={true} style={loginStyles.codeText}>
+            מספר
+          </Text>
         </View>
       </View>
       <View style={loginStyles.numberCodeInputContainer}>
@@ -70,10 +67,9 @@ export const LoginScreen = ({navigation}) => {
           onChange={onSelected}
         />
         <View
-        accessible={true}
-        accessibilityLabel="Enter phone number"
-        accessibilityHint="Receibes the pone number"
-        >
+          accessible={true}
+          accessibilityLabel="Enter phone number"
+          accessibilityHint="Receibes the pone number">
           <TextInput
             value={phoneNumInput}
             onChangeText={val => setPhoneNumInput(val.toString())}
@@ -83,22 +79,23 @@ export const LoginScreen = ({navigation}) => {
         </View>
       </View>
       <View style={loginStyles.sendCodeContainer}>
-        <TouchableOpacity 
-        accessible={true}
-        accessibilityLabel="Send Code"
-        accessibilityHint="Opens the login modal"
-        onPress={() => getOTP()} >
-          <Text style={loginStyles.sendCodeText}>
-          שלח לי את הקוד
-          </Text>
+        <TouchableOpacity
+          accessible={true}
+          accessibilityLabel="Send Code"
+          accessibilityHint="Opens the login modal"
+          onPress={() => getOTP()}>
+          <Text style={loginStyles.sendCodeText}>שלח לי את הקוד</Text>
         </TouchableOpacity>
       </View>
       <View style={loginStyles.blankView} />
-      <LoginModal navigation={navigation} 
-      isVisible={modal} confirm={confirm} 
-      setConfirm={setConfirm} 
-      setModal={setModal}
-      phoneNumber={codeNumInput + phoneNumInput} />
+      <LoginModal
+        navigation={navigation}
+        isVisible={modal}
+        confirm={confirm}
+        setConfirm={setConfirm}
+        setModal={setModal}
+        phoneNumber={codeNumInput + phoneNumInput}
+      />
     </View>
   );
 };
