@@ -9,7 +9,7 @@ export const loginStyles = StyleSheet.create({
   },
   imageContainer: {
     flex: 4,
-    marginTop: 15,
+    marginTop: 30,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -78,6 +78,6 @@ export const loginStyles = StyleSheet.create({
     height: 50,
   },
   blankView: {
-    flex: 6,
+    flex: 5,
   },
 });
